@@ -1,0 +1,11 @@
+{
+  "name": "win-node-env",
+  "version": "0.1.0",
+  "description": "Set NODE_ENV variable before a command on Windows",
+  "main": "index.js",
+  "bin": { "NODE_ENV": "index.js" },
+  "files": ["index.js"],
+  "author": "laggingreflex@gmail.com",
+  "repository": "laggingreflex/win-node-env",
+  "license": "ISC"
+}
