@@ -4,7 +4,7 @@
   "description": "Set NODE_ENV variable before a command on Windows",
   "main": "index.js",
   "bin": {
-    "NODE_ENV": "index.js"
+    "NODE_ENV": "bin/NODE_ENV.js"
   },
   "os": [
     "win32"
