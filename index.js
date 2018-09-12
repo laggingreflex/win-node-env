@@ -1,11 +1,33 @@
 #!/usr/bin/env node
 
-const foreground = require('foreground-child')
+const foreground = require('foreground-child');
 
-const env = process.argv[2].substr(1)
-const cmd = process.argv[3]
-const args = process.argv.slice(4)
+process.argv[2] = 'NODE_ENV' + process.argv[2];
+const args = process.argv.slice(2)
+// .reduce((args, arg) => args.concat(arg.split(/[ ]+/g)), [])
 
-process.env.NODE_ENV = env
+const env = {};
+const cmd = [];
+let envDone;
+for (const arg of args) {
+  if (envDone) {
+    cmd.push(arg);
+  } else {
+    if (!arg.match(/=/)) {
+      envDone = true;
+      cmd.push(arg);
+      continue;
+    }
+    const [envVar, value] = arg.split('=');
+    if (!envVar || !value) {
+      envDone = true;
+      cmd.push(arg);
+      continue;
+    }
+    env[envVar] = value;
+  }
+}
 
-foreground(cmd, args);
+Object.assign(process.env, env);
+
+foreground(cmd[0], cmd.slice(1));
