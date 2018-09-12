@@ -9,11 +9,17 @@
     "DEBUG": "bin/DEBUG.js",
     "PORT": "bin/PORT.js"
   },
+  "scripts": {
+    "test": "mocha"
+  },
   "os": [
     "win32"
   ],
   "repository": "laggingreflex/win-node-env",
   "dependencies": {
     "foreground-child": "^1.5.6"
+  },
+  "devDependencies": {
+    "mocha": "^5.2.0"
   }
 }
