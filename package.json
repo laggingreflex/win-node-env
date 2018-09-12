@@ -6,13 +6,8 @@
   "bin": {
     "NODE_ENV": "index.js"
   },
-  "files": [
-    "index.js"
-  ],
   "os": [
     "win32"
   ],
-  "author": "laggingreflex@gmail.com",
-  "repository": "laggingreflex/win-node-env",
-  "license": "ISC"
+  "repository": "laggingreflex/win-node-env"
 }
