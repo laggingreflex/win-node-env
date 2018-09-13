@@ -7,7 +7,8 @@
     "NODE_ENV": "bin/NODE_ENV.js",
     "ENV": "bin/ENV.js",
     "DEBUG": "bin/DEBUG.js",
-    "PORT": "bin/PORT.js"
+    "PORT": "bin/PORT.js",
+    "CHAI_JEST_SNAPSHOT_UPDATE_ALL": "bin/CHAI_JEST_SNAPSHOT_UPDATE_ALL.js"
   },
   "scripts": {
     "test": "mocha"

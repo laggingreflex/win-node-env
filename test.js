@@ -15,12 +15,14 @@ describe('bin', () => {
   e('ENV');
   e('DEBUG');
   e('PORT');
+  e('CHAI_JEST_SNAPSHOT_UPDATE_ALL');
   describe('multiple', () => {
     const e = multiple('node bin/');
     e('NODE_ENV=1 ENV=2');
     e('ENV=1 NODE_ENV=2');
     e('PORT=1 ENV=2');
     e('DEBUG=1 ENV=2');
+    e('DEBUG=1 CHAI_JEST_SNAPSHOT_UPDATE_ALL=2');
   });
 });
 
@@ -31,11 +33,13 @@ describe('CLI', () => {
   e('ENV');
   e('DEBUG');
   e('PORT');
+  e('CHAI_JEST_SNAPSHOT_UPDATE_ALL');
   describe('multiple', () => {
     const e = multiple('');
     e('NODE_ENV=1 ENV=2');
     e('ENV=1 NODE_ENV=2');
     e('PORT=1 ENV=2');
     e('DEBUG=1 ENV=2');
+    e('CHAI_JEST_SNAPSHOT_UPDATE_ALL=1 ENV=2');
   });
 });
