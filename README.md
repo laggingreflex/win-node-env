@@ -33,7 +33,11 @@ You may install it globally:
 npm install -g win-node-env
 ```
 
-Or you may include it in your project's or your library's dependency.
+Or you may include it in your project's or your library's optional dependencies:
+
+```
+npm install --save-optional win-node-env
+```
 
 It won't install on any other OS than Windows.
 
