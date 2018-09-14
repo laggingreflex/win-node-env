@@ -68,4 +68,36 @@ You can also use multiple env vars, as long as the **first one** is one of the a
 NODE_ENV=production MY_VAR=something cmd /c echo %MY_VAR%
 ```
 
+### Tip: to add even more custom variables
+
+If you'd like to add even more custom variable(s) (that you can specify as first) you can do so like this.
+
+Suppose you want to add `MY_VAR`, place a file named `MY_VAR.cmd` where it can be accessed by your command prompt. (when you enter a command in your command prompt, say `MY_VAR`, it looks for a file with the name `MY_VAR.cmd` in a list of pre-defined paths. This list of pre-defined paths resides in the environment variable `PATH`. [You can edit it][edit-env] to include the path containing your `MY_VAR.cmd` file)
+
+[edit-env]: https://www.google.com/search?q=edit+environment+variables+windows
+
+Make sure this module is installed globally.
+
+Then simply put the following code in this file:
+
+* **`MY_VAR.cmd`**
+
+  ```batch
+  @ECHO OFF
+  SET NODE_PATH=%APPDATA%\npm\node_modules
+  node -e "require('win-node-env')('%~n0')" X %*
+  ```
+
+  * [`NODE_PATH`](https://nodejs.org/api/cli.html#cli_node_path_path) tells `require` where to look for.
+
+  * `%APPDATA%\npm\node_modules` is generally where your globally installed modules live
+
+  * `%~n0` expands to the current file's name (without extension), i.e. `'MY_VAR'`
+
+  * `X` is a dummy argument that's just needed for some reason
+
+  * `%*` expands all the arguments passed to the batch file, and passes them on to this module
+
+You can use the same contents of this file for any other variable names as well, i.e. just copy this file and change the filename.
+
 [cross-env]: https://www.npmjs.com/package/cross-env
