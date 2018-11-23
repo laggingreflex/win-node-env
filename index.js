@@ -18,11 +18,16 @@ module.exports = firstEnvVar => {
   process.argv[2] = firstEnvVar + process.argv[2];
 
   const args = process.argv.slice(2);
+  const combinedString = args.join(' ');
+  const separateCommands = combinedString.split(/;/g).map(s => s.trim());
+  const separateParsedCommands = separateCommands.map(s => parse(s.split(/ /g)));
 
-  const { env, cmd } = parse(args);
-
-  const { status: exitCode } = run(cmd, env);
-  if (exitCode) error(null, exitCode);
+  separateParsedCommands.forEach(({ env, cmd }, i) => {
+    const { status: exitCode } = run(cmd, env);
+    if (exitCode && i === separateParsedCommands.length - 1) {
+      error(null, exitCode);
+    }
+  });
 };
 
 function run(cmd, env) {

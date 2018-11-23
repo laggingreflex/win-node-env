@@ -69,6 +69,23 @@ You can also use multiple env vars, as long as the **first one** is one of the a
 NODE_ENV=production MY_VAR=something cmd /c echo %MY_VAR%
 ```
 
+### Bonus
+
+It now also supports `;` character!
+
+```sh
+ENV=1 command; command
+```
+
+Although any `&&`, `||`, and `&` might break it.
+
+```sh
+ENV=1 command && command ; command
+^^^^^^^^^^^^^    ^^^^^^^^^^^^^^^^^
+processed by     not processed by
+win-node-env     win-node-env
+```
+
 ### Tip: to add even more custom variables
 
 If you'd like to add even more custom variable(s) (that you can specify as first) you can do so like this.

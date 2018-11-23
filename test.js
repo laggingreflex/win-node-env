@@ -47,5 +47,6 @@ describe('CLI', () => {
     e('PORT=1 ENV=2');
     e('DEBUG=1 ENV=2');
     e('CHAI_JEST_SNAPSHOT_UPDATE_ALL=1 ENV=2');
+    it(';', () => assert.equal('okok', exec(`ENV=1 echo ok; node -e "process.stdout.write('ok')"`).replace(/[\n\r]+/g, '')))
   });
 });
