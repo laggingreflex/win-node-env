@@ -1,5 +1,6 @@
 const assert = require('assert');
 const exec = cmd => require('child_process').execSync(cmd, { encoding: 'utf8' });
+const parse = require('./command-parser');
 
 const multiple = ex => e => it(e, () => {
   const [, bin, args] = e.match(/([\w_]+)(=.*)/);
@@ -7,6 +8,11 @@ const multiple = ex => e => it(e, () => {
   const env = e.split(' ').reduce((env, e) => ({ ...env, [e.split('=')[0]]: e.split('=')[1] }), {});
   for (const [key, val] of Object.entries(env))
     assert.deepEqual([key, val], [key, output[key]]);
+});
+
+describe('command-parser', () => {
+  const e = (test, expected) => it(test, () => assert.deepEqual(parse(test.split(/ /g)), expected))
+  e('ENV=VAL command', { env: { ENV: 'VAL' }, cmd: ['command'] });
 });
 
 describe('bin', () => {
