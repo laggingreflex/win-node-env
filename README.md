@@ -61,6 +61,7 @@ Apart from `NODE_ENV` there's a few more commonly used env vars:
 * `DEBUG`
 * `ENV`
 * `PORT`
+* `NODE_OPTIONS`
 
 You can also use multiple env vars, as long as the **first one** is one of the above
 

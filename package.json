@@ -5,6 +5,7 @@
   "main": "index.js",
   "bin": {
     "NODE_ENV": "bin/NODE_ENV.js",
+    "NODE_OPTIONS": "bin/NODE_OPTIONS.js",
     "ENV": "bin/ENV.js",
     "DEBUG": "bin/DEBUG.js",
     "PORT": "bin/PORT.js",
