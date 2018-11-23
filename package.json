@@ -1,6 +1,6 @@
 {
   "name": "win-node-env",
-  "version": "0.3.0",
+  "version": "0.4.0",
   "description": "Set NODE_ENV variable before a command on Windows",
   "main": "index.js",
   "bin": {
