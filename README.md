@@ -2,6 +2,8 @@
 
 Run npm scripts on Windows that set (common) environment variables.
 
+<small>Note: Works only in cmd.exe, not in PowerShell. See [#6](../../issues/6)</small>
+
 ## Problem
 
 If you're on Windows, you've probably encountered an error like:
