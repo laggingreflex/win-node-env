@@ -13,6 +13,9 @@ const multiple = ex => e => it(e, () => {
 describe('command-parser', () => {
   const e = (test, expected) => it(test, () => assert.deepEqual(parse(test.split(/ /g)), expected))
   e('ENV=VAL command', { env: { ENV: 'VAL' }, cmd: ['command'] });
+  e('a=1 b=2  command', { env: { a: '1', b: 2 }, cmd: ['command'] });
+  e(`a='1 2' command`, { env: { a: '1 2' }, cmd: ['command'] });
+  e(`NODE_OPTIONS='-r next-logger' command`, { env: { NODE_OPTIONS: '-r next-logger' }, cmd: ['command'] });
 });
 
 describe('bin', () => {
