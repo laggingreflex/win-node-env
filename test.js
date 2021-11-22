@@ -15,6 +15,7 @@ describe('command-parser', () => {
   e('ENV=VAL command', { env: { ENV: 'VAL' }, cmd: ['command'] });
   e('a=1 b=2  command', { env: { a: '1', b: 2 }, cmd: ['command'] });
   e(`a='1 2' command`, { env: { a: '1 2' }, cmd: ['command'] });
+  e(`a='1 2' b='3 4' command`, { env: { a: '1 2', b: '3 4' }, cmd: ['command'] });
   e(`NODE_OPTIONS='-r next-logger' command`, { env: { NODE_OPTIONS: '-r next-logger' }, cmd: ['command'] });
 });
 
@@ -43,6 +44,7 @@ describe('CLI', () => {
   e('DEBUG');
   e('PORT');
   e('CHAI_JEST_SNAPSHOT_UPDATE_ALL');
+  // e(`NODE_OPTIONS='-r next-logger'`);
   describe('multiple', () => {
     const e = multiple('');
     e('NODE_ENV=1 ENV=2');
@@ -50,6 +52,7 @@ describe('CLI', () => {
     e('PORT=1 ENV=2');
     e('DEBUG=1 ENV=2');
     e('CHAI_JEST_SNAPSHOT_UPDATE_ALL=1 ENV=2');
+    // e(`NODE_OPTIONS='-r next-logger'`);
     it(';', () => assert.equal('okok', exec(`ENV=1 echo ok; node -e "process.stdout.write('ok')"`).replace(/[\n\r]+/g, '')))
   });
 });
