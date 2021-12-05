@@ -1,3 +1,4 @@
+const Path = require('path');
 const { spawnSync } = require('child_process');
 const parse = require('./command-parser');
 
@@ -37,7 +38,20 @@ function run(cmd, env) {
     return;
   }
 
-  const newEnv = Object.assign({}, process.env, env);
+  let newEnv = Object.assign({}, process.env, env);
+  setNodeModulesBinPath(newEnv);
 
   return spawnSync(cmd[0], cmd.slice(1), { stdio: 'inherit', shell: true, env: newEnv });
+}
+
+function setNodeModulesBinPath(env = process.env) {
+  for (const PATH in env) {
+    if (PATH.toLowerCase() === 'path') {
+      const path = env[PATH];
+      const split = path.split(';');
+      split.push(Path.join('node_modules', '.bin'));
+      env[PATH] = split.join(';');
+      break;
+    }
+  }
 }
