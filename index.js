@@ -23,7 +23,8 @@ module.exports = firstEnvVar => {
   const separateParsedCommands = separateCommands.map(s => parse(s.split(/ /g)));
 
   separateParsedCommands.forEach(({ env, cmd }, i) => {
-    const { status: exitCode } = run(cmd, env);
+    const result = run(cmd, env);
+    const exitCode = result && result.status;
     if (exitCode && i === separateParsedCommands.length - 1) {
       error(null, exitCode);
     }
