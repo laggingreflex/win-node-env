@@ -29,8 +29,12 @@ module.exports = args => {
         return;
       } else {
         if (value.startsWith(`'`)) {
-          value = value.substr(1);
-          lastEnv = envVar;
+          if (value.endsWith(`'`)) {
+            value = value.substring(1, value.length - 1);
+          } else {
+            value = value.substr(1);
+            lastEnv = envVar;
+          }
         }
         env[envVar] = value;
       }
