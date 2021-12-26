@@ -6,6 +6,7 @@
   "bin": {
     "NODE_ENV": "bin/NODE_ENV.js",
     "NODE_OPTIONS": "bin/NODE_OPTIONS.js",
+    "NODE_DEBUG": "bin/NODE_DEBUG.js",
     "ENV": "bin/ENV.js",
     "DEBUG": "bin/DEBUG.js",
     "PORT": "bin/PORT.js",
