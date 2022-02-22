@@ -23,8 +23,10 @@ module.exports = args => {
       envDone = true;
       cmd.push(arg);
     } else {
-      let [envVar, value] = arg.split('=');
-      if (!envVar || !value) {
+      const firstSplit = arg.indexOf('=');
+      const envVar = arg.substr(0, firstSplit);
+      let value = arg.substr(firstSplit + 1);
+      if (!envVar || !value || firstSplit === -1) {
         exit(`Invalid env var:`, arg);
         return;
       } else {

@@ -17,6 +17,8 @@ describe('command-parser', () => {
   e(`a='1 2' command`, { env: { a: '1 2' }, cmd: ['command'] });
   e(`a='1 2' b='3 4' command`, { env: { a: '1 2', b: '3 4' }, cmd: ['command'] });
   e(`NODE_OPTIONS='-r next-logger' command`, { env: { NODE_OPTIONS: '-r next-logger' }, cmd: ['command'] });
+  // NODE_OPTIONS example in https://nodejs.org/dist/latest-v16.x/docs/api/cli.html#node_optionsoptions
+  e(`NODE_OPTIONS='--inspect=localhost:4444' command`, { env: { NODE_OPTIONS: '--inspect=localhost:4444' }, cmd: ['command'] });
 });
 
 describe('bin', () => {
